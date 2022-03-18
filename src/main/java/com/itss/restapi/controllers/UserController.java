@@ -2,6 +2,7 @@ package com.itss.restapi.controllers;
 
 import com.itss.restapi.entities.User;
 import com.itss.restapi.services.UserService;
+import com.itss.restapi.user.UserCredentials;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -36,9 +36,8 @@ public class UserController {
 
   @PostMapping("/user/auth")
   public ResponseEntity<Boolean> authUser(
-    @RequestParam String login,
-    @RequestParam String password
+    @RequestBody UserCredentials userCredentials
   ) {
-    return userService.authUser(login, password);
+    return userService.authUser(userCredentials);
   }
 }

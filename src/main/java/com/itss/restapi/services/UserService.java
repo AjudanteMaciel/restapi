@@ -2,6 +2,7 @@ package com.itss.restapi.services;
 
 import com.itss.restapi.entities.User;
 import com.itss.restapi.repositories.UserRepository;
+import com.itss.restapi.user.UserCredentials;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,12 +38,15 @@ public class UserService {
     return userRepository.save(user);
   }
 
-  public ResponseEntity<Boolean> authUser(String login, String password) {
-    User user = userRepository.findByUseCpf(login);
+  public ResponseEntity<Boolean> authUser(UserCredentials userCredentials) {
+    User user = userRepository.findByUseCpf(userCredentials.getCpf());
     if (user == null) {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
     }
-    boolean valid = passwordEncoder.matches(password, user.getUseSenha());
+    boolean valid = passwordEncoder.matches(
+      userCredentials.getPassword(),
+      user.getUseSenha()
+    );
     HttpStatus status = (valid) ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
 
     return ResponseEntity.status(status).body(valid);
