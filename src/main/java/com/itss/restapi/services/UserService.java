@@ -33,6 +33,11 @@ public class UserService {
   }
 
   public User saveUser(User user) {
+    emailSenderService.sendEmail(
+      user.getUseEmail(),
+      "Bem vindo",
+      "Cpf: " + user.getUseCpf() + "\nSenha: " + user.getUseSenha()
+    );
     String encodedPassword = this.passwordEncoder.encode(user.getUseSenha());
     user.setUseSenha(encodedPassword);
 
