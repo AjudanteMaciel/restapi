@@ -12,14 +12,18 @@ public class EmailSenderService {
   JavaMailSender mailSender;
 
   public void sendEmail(String toEmail, String subject, String body) {
-    SimpleMailMessage message = new SimpleMailMessage();
+    try {
+      SimpleMailMessage message = new SimpleMailMessage();
 
-    message.setFrom("macieldfaria@gmail.com");
-    message.setTo(toEmail);
-    message.setText(body);
-    message.setSubject(subject);
+      message.setFrom("macieldfaria@gmail.com");
+      message.setTo(toEmail);
+      message.setText(body);
+      message.setSubject(subject);
+      mailSender.send(message);
 
-    mailSender.send(message);
-    System.out.println("Email enviado com sucesso...");
+      System.out.println("Email enviado com sucesso...");
+    } catch (Exception e) {
+      System.out.println(e);
+    }
   }
 }

@@ -17,8 +17,10 @@ public class UserService {
   @Autowired
   UserRepository userRepository;
 
+  @Autowired
   EmailSenderService emailSenderService;
-  PasswordEncoder passwordEncoder;
+
+  private PasswordEncoder passwordEncoder;
 
   public UserService() {
     this.passwordEncoder = new BCryptPasswordEncoder();
