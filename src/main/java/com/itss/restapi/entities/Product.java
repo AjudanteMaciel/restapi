@@ -34,6 +34,9 @@ public class Product {
   )
   private String proLab;
 
+  @Column(name = "pro_desc", nullable = false)
+  private String proDesc;
+
   @Column(name = "pro_price", columnDefinition = "numeric(10,2) not null")
   private BigDecimal proPrice;
 
@@ -51,6 +54,14 @@ public class Product {
   private List<User> users;
 
   // #region GETETRS/SETTERS
+  public String getProDesc() {
+    return proDesc;
+  }
+
+  public void setProDesc(String proDesc) {
+    this.proDesc = proDesc;
+  }
+
   public Long getProId() {
     return proId;
   }
