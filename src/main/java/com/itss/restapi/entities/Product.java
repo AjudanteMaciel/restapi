@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -34,6 +35,7 @@ public class Product {
   )
   private String proLab;
 
+  @Lob
   @Column(name = "pro_desc", nullable = false)
   private String proDesc;
 
