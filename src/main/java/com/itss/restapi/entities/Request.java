@@ -1,11 +1,15 @@
 package com.itss.restapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "requests")
@@ -23,8 +27,20 @@ public class Request {
   private long reqProId;
 
   @Column(name = "req_qtd", nullable = false)
-  private int qtd;
+  private int reqQtd;
 
+  @Column(name = "req_date")
+  @Temporal(TemporalType.DATE)
+  @JsonFormat(pattern = "dd-mm-yyyy HH:mm:ss")
+  private Date reqDate;
+
+  @Column(
+    name = "req_status",
+    columnDefinition = "character varying(20) not null"
+  )
+  private String reqStatus;
+
+  //#region
   public long getReqId() {
     return reqId;
   }
@@ -49,11 +65,28 @@ public class Request {
     this.reqProId = reqProId;
   }
 
-  public int getQtd() {
-    return qtd;
+  public int getReqQtd() {
+    return reqQtd;
   }
 
-  public void setQtd(int qtd) {
-    this.qtd = qtd;
+  public void setReqQtd(int reqQtd) {
+    this.reqQtd = reqQtd;
   }
+
+  public Date getReqDate() {
+    return reqDate;
+  }
+
+  public void setReqDate(Date reqDate) {
+    this.reqDate = reqDate;
+  }
+
+  public String getReqStatus() {
+    return reqStatus;
+  }
+
+  public void setReqStatus(String reqStatus) {
+    this.reqStatus = reqStatus;
+  }
+  //#endregion
 }

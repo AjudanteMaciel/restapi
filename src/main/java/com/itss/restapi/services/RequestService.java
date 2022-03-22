@@ -24,4 +24,8 @@ public class RequestService {
   public Request saveRequest(Request request) {
     return requestRepository.save(request);
   }
+
+  public List<Request> listRequests() {
+    return requestRepository.findAll();
+  }
 }

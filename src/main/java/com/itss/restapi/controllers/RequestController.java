@@ -28,6 +28,11 @@ public class RequestController {
     return requestService.getRequest(reqId);
   }
 
+  @GetMapping("/request/list")
+  public List<Request> listRequests() {
+    return requestService.listRequests();
+  }
+
   @PostMapping("/request/add")
   public Request saveRequest(@RequestBody Request request) {
     return requestService.saveRequest(request);
